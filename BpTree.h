@@ -14,20 +14,16 @@ class BTreeNode
 public:
     BTreeNode(int _n, bool _leaf);   // Constructor
  
-    // A function to traverse all nodes in a subtree rooted with this node
-    void traverse();
-    
-    int prints();  //TESTING PURPOSES
- 
     // A function to search a key in subtree rooted with this node.    
-    BTreeNode *find(int k);   // returns NULL if k is not present.
+    // returns NULL if k is not present.
+    BTreeNode *find(int k); 
  
 // Make BTree friend of this so that we can access private members of this
 // class in BTree functions
 friend class BTree;
 };
- 
-// A BTree
+
+
 class BpTree
 {
     BTreeNode *root; // Pointer to root node
@@ -35,10 +31,7 @@ class BpTree
 public:
     // Constructor (Initializes tree as empty)
     BpTree(int _n);
- 
-    // function to traverse the tree
-    void traverse();
- 
+    
     // function to search a key in this tree
     BTreeNode* find(int k);
 };

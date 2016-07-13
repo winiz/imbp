@@ -17,13 +17,6 @@ BTreeNode::BTreeNode(int _n, bool _leaf){
     ck = 0;
 }
 
-//TESTING PURPOSES
-int BTreeNode::prints(){
-    return n;  
-}
-// Function to traverse all nodes in a subtree rooted with this node
-void BTreeNode::traverse(){}
- 
 // Function to search key k in subtree rooted with this node
 BTreeNode* BTreeNode::find(int k){
     // Find the first key greater than or equal to k
@@ -52,11 +45,6 @@ BpTree::BpTree(int _n){
     n = _n; 
 }
 
-// Function to traverse the tree
-void BpTree::traverse(){
-    if (root != NULL) root->traverse(); 
-}
- 
 // Function to search a key in this tree
 BTreeNode* BpTree::find(int k){  
     return (root == NULL)? NULL : root->find(k); 
