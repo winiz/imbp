@@ -17,7 +17,11 @@ BTreeNode::BTreeNode(int _n, bool _leaf)
     // Initialize the current number of keys as 0
     ck = 0;
 }
- 
+
+//TESTING PURPOSES
+int BTreeNode::prints(){
+    return n;  
+}
 // Function to traverse all nodes in a subtree rooted with this node
 void BTreeNode::traverse()
 {}
