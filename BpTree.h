@@ -1,5 +1,6 @@
 #ifndef BPTREE_H
 #define BPTREE_H
+#include <iostream>
 #include <cstddef>
 
 // A BTree node
@@ -16,7 +17,7 @@ public:
     // A function to traverse all nodes in a subtree rooted with this node
     void traverse();
     
-    int prints();
+    int prints();  //TESTING PURPOSES
  
     // A function to search a key in subtree rooted with this node.    
     BTreeNode *search(int k);   // returns NULL if k is not present.
@@ -27,22 +28,19 @@ friend class BTree;
 };
  
 // A BTree
-class BTree
+class BpTree
 {
     BTreeNode *root; // Pointer to root node
     int n;  // Number of search keys 
 public:
     // Constructor (Initializes tree as empty)
-    BTree(int _n)
-    {  root = NULL;  n = _n; }
+    BpTree(int _n);
  
     // function to traverse the tree
-    void traverse()
-    {  if (root != NULL) root->traverse(); }
+    void traverse();
  
     // function to search a key in this tree
-    BTreeNode* search(int k)
-    {  return (root == NULL)? NULL : root->search(k); }
+    BTreeNode* search(int k);
 };
 
 #endif //BPTREE_H
