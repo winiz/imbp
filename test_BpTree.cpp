@@ -1,8 +1,5 @@
-#include <stdio.h>
-#include "list.h"
-#include <stdbool.h>
-#include <string.h>
-#include <assert.h>
+#include <iostream>
+#include "BpTree.h"
 
 /*
  * Main()
@@ -11,6 +8,6 @@
 int main(int argc, char** argv)
 {
     return 0;
-    printf("Starting tests...\n");
+    cout<<'hi'<<endl;
 	//struct nodeStruct *head = NULL;
 }
