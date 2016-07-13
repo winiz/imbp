@@ -12,6 +12,8 @@ class BTreeNode
     int ck;     // Current number of search keys
     bool leaf; // Is true when node is leaf. Otherwise false
     
+    void inserFull(int k);
+    
     void insertNonFull(int k);
     
     void splitChild(int i, BTreeNode *y);

@@ -92,7 +92,7 @@ void BpTree::insert(int k){
         // If root is full, then tree grows in height
         if (root->ck == n)
         {
-            
+            root->insertFull(k);
         }
         else  // If root is not full, call insertNonFull for root
             root->insertNonFull(k);
