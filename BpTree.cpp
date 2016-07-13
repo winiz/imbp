@@ -18,26 +18,6 @@ BTreeNode::BTreeNode(int _n, bool _leaf){
     ck = 0;
 }
 
-// Function to search key k in subtree rooted with this node
-BTreeNode* BTreeNode::find(int k){
-    // Find the first key greater than or equal to k
-    int i = 0;
-    while (i < n && k > keys[i])
-        i++;
- 
-    // If the found key is equal to k, return this node
-    if (keys[i] == k)
-        return this;
- 
-    // If key is not found here and this is a leaf node
-    if (leaf == true)
-        return NULL;
- 
-    // Go to the appropriate child
-    return C[i]->find(k);
-}
-
-
 void BTreeNode::insertNonFull(int k){
    // Initialize index as index of rightmost element
     int i = n-1;
@@ -80,46 +60,25 @@ void BTreeNode::insertNonFull(int k){
     }
 }
 
-
-// The main function that inserts a new key
-void BpTree::insert(int k){
-    // If tree is empty
-    if (root == NULL)
-    {
-        // Allocate memory for root
-        root = new BTreeNode(n, true);
-        root->keys[0] = k; // Insert key
-        root->n = 1; // Update number of keys in root
-    }
-    else // If tree is not empty
-    {
-           // If root is full, then tree grows in height
-        if (root->ck == n)
-        {
-            // Allocate memory for new root
-            BTreeNode *nr = new BTreeNode(n, false);
-
-            // Make old root as child of new root
-            nr->C[0] = root;
-
-            // Split the old root and move 1 key to the new root
-            nr->splitChild(0, root);
-
-            // New root has two children now. Decide which of the
-            // two children is going to have new key
-            int i = 0;
-            if (nr->keys[0] < k)
-                i++;
-            nr->C[i]->insertNonFull(k);
-
-            // Change root
-            root = nr;
-        }
-        else // If root is not full, call insertNonFull for root
-            root->insertNonFull(k);
-    }
+// Function to search key k in subtree rooted with this node
+BTreeNode* BTreeNode::find(int k){
+    // Find the first key greater than or equal to k
+    int i = 0;
+    while (i < n && k > keys[i])
+        i++;
+ 
+    // If the found key is equal to k, return this node
+    if (keys[i] == k)
+        return this;
+ 
+    // If key is not found here and this is a leaf node
+    if (leaf == true)
+        return NULL;
+ 
+    // Go to the appropriate child
+    return C[i]->find(k);
 }
-    
+
 void BTreeNode::splitChild(int i, BTreeNode *y){
     // Create a new node which is going to store (n) keys
     // of y
@@ -160,6 +119,7 @@ void BTreeNode::splitChild(int i, BTreeNode *y){
     ck = ck + 1;
 }
 
+
 // Constructor for BpTree 
 BpTree::BpTree(int _n){  
     // (Initializes tree as empty)
@@ -172,4 +132,46 @@ BpTree::BpTree(int _n){
 BTreeNode* BpTree::find(int k){  
     return (root == NULL)? NULL : root->find(k); 
 }
+
+
+// The main function that inserts a new key
+void BpTree::insert(int k){
+    // If tree is empty
+    if (root == NULL)
+    {
+        // Allocate memory for root
+        root = new BTreeNode(n, true);
+        root->keys[0] = k; // Insert key
+        root->n = 1; // Update number of keys in root
+    }
+    else // If tree is not empty
+    {
+           // If root is full, then tree grows in height
+        if (root->ck == n)
+        {
+            // Allocate memory for new root
+            BTreeNode *nr = new BTreeNode(n, false);
+
+            // Make old root as child of new root
+            nr->C[0] = root;
+
+            // Split the old root and move 1 key to the new root
+            nr->splitChild(0, root);
+
+            // New root has two children now. Decide which of the
+            // two children is going to have new key
+            int i = 0;
+            if (nr->keys[0] < k)
+                i++;
+            nr->C[i]->insertNonFull(k);
+
+            // Change root
+            root = nr;
+        }
+        else // If root is not full, call insertNonFull for root
+            root->insertNonFull(k);
+    }
+}
+
+
 

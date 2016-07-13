@@ -8,8 +8,8 @@
 class BTreeNode{
 private:
     int n;      // Maximum number of search keys 
-    int *keys;  // An array of keys
-    BTreeNode **C; // An array of child pointers
+    int *keys;  // An array of keys 
+    BTreeNode **C; // An array of child pointers (Maximum n+1 of them)
     int ck;     // Current number of search keys
     bool leaf; // Is true when node is leaf. Otherwise false
 
@@ -30,6 +30,7 @@ public:
     // returns NULL if k is not present.
     BTreeNode *find(int k); 
     
+    // Alow BpTree to have access to the private fields in here 
     friend class BpTree;
 };
 
