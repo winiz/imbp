@@ -25,13 +25,31 @@ int BTreeNode::prints(){
 void BTreeNode::traverse(){}
  
 // Function to search key k in subtree rooted with this node
-BTreeNode* BTreeNode::search(int k){}
+BTreeNode* BTreeNode::find(int k){
+    // Find the first key greater than or equal to k
+    int i = 0;
+    while (i < n && k > keys[i])
+        i++;
+ 
+    // If the found key is equal to k, return this node
+    if (keys[i] == k)
+        return this;
+ 
+    // If key is not found here and this is a leaf node
+    if (leaf == true)
+        return NULL;
+ 
+    // Go to the appropriate child
+    return C[i]->find(k);
+}
 
 
-// Constructor for BpTree (Initializes tree as empty)
+// Constructor for BpTree 
 BpTree::BpTree(int _n){  
+    // (Initializes tree as empty)
     root = NULL;  
-    n = _n;
+    // Copy down the given maximum number of search key value
+    n = _n; 
 }
 
 // Function to traverse the tree
@@ -40,6 +58,6 @@ void BpTree::traverse(){
 }
  
 // Function to search a key in this tree
-BTreeNode* BpTree::search(int k){  
-    return (root == NULL)? NULL : root->search(k); 
+BTreeNode* BpTree::find(int k){  
+    return (root == NULL)? NULL : root->find(k); 
 }

@@ -20,7 +20,7 @@ public:
     int prints();  //TESTING PURPOSES
  
     // A function to search a key in subtree rooted with this node.    
-    BTreeNode *search(int k);   // returns NULL if k is not present.
+    BTreeNode *find(int k);   // returns NULL if k is not present.
  
 // Make BTree friend of this so that we can access private members of this
 // class in BTree functions
@@ -40,7 +40,7 @@ public:
     void traverse();
  
     // function to search a key in this tree
-    BTreeNode* search(int k);
+    BTreeNode* find(int k);
 };
 
 #endif //BPTREE_H
