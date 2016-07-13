@@ -4,13 +4,13 @@
 // A BTree node
 class BTreeNode
 {
+    int n;      // Maximum number of search keys 
     int *keys;  // An array of keys
-    int t;      // Minimum degree (defines the range for number of keys)
     BTreeNode **C; // An array of child pointers
-    int n;     // Current number of keys
+    int ck;     // Current number of keys
     bool leaf; // Is true when node is leaf. Otherwise false
 public:
-    BTreeNode(int _t, bool _leaf);   // Constructor
+    BTreeNode(int _n, bool _leaf);   // Constructor
  
     // A function to traverse all nodes in a subtree rooted with this node
     void traverse();
@@ -27,10 +27,10 @@ friend class BTree;
 class BTree
 {
     BTreeNode *root; // Pointer to root node
-    int t;  // Minimum degree
+    int n;  // Number of search keys 
 public:
     // Constructor (Initializes tree as empty)
-    BTree(int _t)
+    BTree(int _n)
     {  root = NULL;  t = _t; }
  
     // function to traverse the tree
