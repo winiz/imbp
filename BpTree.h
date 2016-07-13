@@ -1,5 +1,6 @@
-#ifndef BPTREE.H
-#define BPTREE.H
+#ifndef BPTREE_H
+#define BPTREE_H
+#include <cstddef>
 
 // A BTree node
 class BTreeNode
@@ -31,7 +32,7 @@ class BTree
 public:
     // Constructor (Initializes tree as empty)
     BTree(int _n)
-    {  root = NULL;  t = _t; }
+    {  root = NULL;  n = _n; }
  
     // function to traverse the tree
     void traverse()
@@ -41,4 +42,5 @@ public:
     BTreeNode* search(int k)
     {  return (root == NULL)? NULL : root->search(k); }
 };
- 
+
+#endif //BPTREE_H
