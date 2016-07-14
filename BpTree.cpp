@@ -135,34 +135,7 @@ BTreeNode* BpTree::find(int k){
 
 
 // The main function that inserts a new key
-void BpTree::insert(int k, char s){
-    /*  
-        // Perform a search to determine what bucket the new record should go into
-        find(k);
-    
-        if (the bucket is not full){
-            add the record
-       }
-        else  {split the bucket}{
-            // save the first 
-            temp = leaf->k[0] ; 
-            // Allocate new leaf and move half the bucket's elements to the new bucket.
-            leaf = new leaf;
-            for (int i = floor(n/2); i = n; i++){
-                leaf->C[i] = parent->C[i];
-            }
-            // Insert the new leaf's smallest key and address into the parent.
-           *parent->C[0] = leaf->k[0];
-           //Add the middle key to the parent node.
-            parent->k[sth] = leaf->k[2]
-        }
- 
-        If the parent is full, split it too.
-        Repeat until a parent is found that need not split.
-        
-        If the root splits, create a new root which has one key and two pointers. (That is, the value that gets pushed to the new root gets removed from the original node)
-    B-trees grow at the root and not at the leaves.*/
-
+void BpTree::insert(int k){
     // If tree is empty
     if (root == NULL){
         // Create new node in the place of root 

@@ -45,7 +45,7 @@ public:
     // function to search a key in this tree
     BTreeNode* find(int k);
     
-    void insert(int k, char s);
+    void insert(int k);
 };
 
 #endif //BPTREE_H
