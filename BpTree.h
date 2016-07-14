@@ -12,7 +12,6 @@ private:
     BTreeNode **C; // An array of child pointers (Maximum n+1 of them)
     int ck;     // Current number of search keys
     bool leaf; // Is true when node is leaf. Otherwise false
-
     // A utility function to insert a new key in the subtree rooted with
     // this node. The assumption is, the node must be non-full when this
     // function is called
@@ -23,12 +22,12 @@ private:
     // Make BTree friend of this so that we can access private members of this
     // class in BTree functions
     
-public:
-    BTreeNode(int _n, bool _leaf);   // Constructor
-    
     // A function to search a key in subtree rooted with this node.    
     // returns NULL if k is not present.
-    BTreeNode *find(int k); 
+    BTreeNode *findNode(int k); 
+    
+public:
+    BTreeNode(int _n, bool _leaf);   // Constructor
     
     // Alow BpTree to have access to the private fields in here 
     friend class BpTree;
@@ -46,7 +45,7 @@ public:
     // function to search a key in this tree
     BTreeNode* find(int k);
     
-    void insert(int k);
+    void insert(int k, char s);
 };
 
 #endif //BPTREE_H

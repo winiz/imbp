@@ -61,7 +61,7 @@ void BTreeNode::insertNonFull(int k){
 }
 
 // Function to search key k in subtree rooted with this node
-BTreeNode* BTreeNode::find(int k){
+BTreeNode* BTreeNode::findNode(int k){
     // Find the first key greater than or equal to k
     int i = 0;
     while (i < n && k > keys[i])
@@ -76,7 +76,7 @@ BTreeNode* BTreeNode::find(int k){
         return NULL;
  
     // Go to the appropriate child
-    return C[i]->find(k);
+    return C[i]->findNode(k);
 }
 
 void BTreeNode::splitChild(int i, BTreeNode *y){
@@ -122,7 +122,7 @@ void BTreeNode::splitChild(int i, BTreeNode *y){
 
 // Constructor for BpTree 
 BpTree::BpTree(int _n){  
-    // (Initializes tree as empty)
+    // (Initializes tree as a empty tree)
     root = NULL;  
     // Copy down the given maximum number of search key value
     n = _n; 
@@ -130,47 +130,48 @@ BpTree::BpTree(int _n){
 
 // Function to search a key in this tree
 BTreeNode* BpTree::find(int k){  
-    return (root == NULL)? NULL : root->find(k); 
+    return (root == NULL)? NULL : root->findNode(k); 
 }
 
 
 // The main function that inserts a new key
-void BpTree::insert(int k){
+void BpTree::insert(int k, char s){
+    /*  
+        // Perform a search to determine what bucket the new record should go into
+        find(k);
+    
+        if (the bucket is not full){
+            add the record
+       }
+        else  {split the bucket}{
+            // save the first 
+            temp = leaf->k[0] ; 
+            // Allocate new leaf and move half the bucket's elements to the new bucket.
+            leaf = new leaf;
+            for (int i = floor(n/2); i = n; i++){
+                leaf->C[i] = parent->C[i];
+            }
+            // Insert the new leaf's smallest key and address into the parent.
+           *parent->C[0] = leaf->k[0];
+           //Add the middle key to the parent node.
+            parent->k[sth] = leaf->k[2]
+        }
+ 
+        If the parent is full, split it too.
+        Repeat until a parent is found that need not split.
+        
+        If the root splits, create a new root which has one key and two pointers. (That is, the value that gets pushed to the new root gets removed from the original node)
+    B-trees grow at the root and not at the leaves.*/
+
     // If tree is empty
-    if (root == NULL)
-    {
-        // Allocate memory for root
+    if (root == NULL){
+        // Create new node in the place of root 
         root = new BTreeNode(n, true);
         root->keys[0] = k; // Insert key
-        root->n = 1; // Update number of keys in root
+        root->ck = 1; // Update current number of keys in root
     }
     else // If tree is not empty
-    {
-           // If root is full, then tree grows in height
-        if (root->ck == n)
-        {
-            // Allocate memory for new root
-            BTreeNode *nr = new BTreeNode(n, false);
-
-            // Make old root as child of new root
-            nr->C[0] = root;
-
-            // Split the old root and move 1 key to the new root
-            nr->splitChild(0, root);
-
-            // New root has two children now. Decide which of the
-            // two children is going to have new key
-            int i = 0;
-            if (nr->keys[0] < k)
-                i++;
-            nr->C[i]->insertNonFull(k);
-
-            // Change root
-            root = nr;
-        }
-        else // If root is not full, call insertNonFull for root
-            root->insertNonFull(k);
-    }
+    {}
 }
 
 
